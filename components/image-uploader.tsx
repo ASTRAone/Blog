@@ -7,11 +7,11 @@ import Image from "next/image";
 import { useState } from "react";
 import { toast } from "sonner";
 
-type Props = {
+interface Props {
   defaultUrl?: string | null;
   onChange?: (url: string | null) => void;
   endpoint: keyof OurFileRouter;
-};
+}
 
 export const ImageUploader = ({ defaultUrl, onChange, endpoint }: Props) => {
   const [value, setValue] = useState<string | null>(defaultUrl ?? null);

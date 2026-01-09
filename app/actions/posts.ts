@@ -5,10 +5,10 @@ import { authSession } from "@/lib/auth-utils";
 import prisma from "@/lib/db";
 import { Post, PostStatus } from "@/lib/generated/prisma/client";
 
-type Tag = {
+interface Tag {
   label: string;
   value: string;
-};
+}
 
 export const getUniquePost = async (id: string) => {
   try {

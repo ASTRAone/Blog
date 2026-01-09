@@ -41,7 +41,11 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# Prisma
 /lib/generated/prisma
+
+# Husky
+/.husky
 
 # Local database files
 *.db
