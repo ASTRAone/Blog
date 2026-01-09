@@ -14,6 +14,7 @@ import { columns } from "./clients/columns";
 
 const PostsPage = async () => {
   const data = await getAllPosts();
+  const posts = Array.isArray(data) ? data : [];
 
   return (
     <>
@@ -37,7 +38,7 @@ const PostsPage = async () => {
         </div>
       </div>
 
-      <DataTable data={data} columns={columns} />
+      <DataTable data={posts} columns={columns} />
     </>
   );
 };
