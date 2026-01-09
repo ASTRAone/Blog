@@ -6,13 +6,13 @@ import prisma from "@/lib/db";
 import { Category, Post } from "@/lib/generated/prisma/client";
 
 export type PostWithRelations = Post & {
-  user: {
+  user?: {
     id: string;
     name: string;
     image: string | null;
     savedPosts: string[];
   };
-  category: Category | null;
+  category?: Category | null;
   savedPosts?: string[];
 };
 

@@ -19,7 +19,7 @@ interface PostProps {
   post: Post & {
     category?: Category | null;
   } & {
-    user: {
+    user?: {
       name: string;
       id: string;
       image: string | null;
@@ -32,7 +32,7 @@ export const PostCard = ({ post }: PostProps) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const excertp = stripHtml(post.content);
-  const isSavePost = post.user.savedPosts.includes(post.id);
+  const isSavePost = post?.user?.savedPosts.includes(post.id);
 
   const onSavePost = async () => {
     setIsLoading(true);
@@ -134,8 +134,8 @@ export const PostCard = ({ post }: PostProps) => {
             <div className="relative h-8 w-8 rounded-full shadow-lg">
               <Image
                 className="rounded-full shadow-lg"
-                src={post.user.image!}
-                alt={post.user.name}
+                src={post?.user?.image ?? ""}
+                alt={post?.user?.name ?? ""}
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
@@ -143,7 +143,7 @@ export const PostCard = ({ post }: PostProps) => {
 
             <div className="flex flex-col gap-1">
               <span className="text-[10px] font-semibold">
-                {post.user.name}
+                {post?.user?.name ?? "-"}
               </span>
               <span className="text-[10px] text-neutral-500 font-semibold">
                 {format(post.createdAt, "dd/MM/yyyy")}
