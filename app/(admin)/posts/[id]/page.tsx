@@ -50,7 +50,7 @@ const PostPage = async ({ params }: { params: Promise<{ id: string }> }) => {
             content={post.content}
             imageUrl={post.imageUrl}
             categoryId={post.categoryId!}
-            tags={post.tags.map((tag) => ({ label: tag, value: tag }))}
+            tags={post.tags.map((tag: string) => ({ label: tag, value: tag }))}
             status={post.status}
             categories={categories}
             slug={post.slug}
