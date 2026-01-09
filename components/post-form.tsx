@@ -197,7 +197,7 @@ const PostForm = ({
                     components={{
                       IndicatorsContainer: () => null,
                     }}
-                    onCreateOption={(value) => {
+                    onCreateOption={(value: string) => {
                       const newOption = {
                         label: value,
                         value: value.toLocaleLowerCase(),
