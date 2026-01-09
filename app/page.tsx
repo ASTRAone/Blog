@@ -4,6 +4,7 @@ import { NavMenu } from "@/components/navbar";
 import { Pagination } from "@/components/pagination";
 import { PostCard } from "@/components/post-card";
 import { authSession } from "@/lib/auth-utils";
+import { Post } from "@/lib/generated/prisma/client";
 
 export default async function Home({
   searchParams,
@@ -26,7 +27,7 @@ export default async function Home({
       <Header />
       <div className="flex flex-col gap-6 justify-center">
         <div className="container mx-auto p-4 grid grid-cols-1 md:grid-cols-4 gap-6 py-6">
-          {posts.map((post) => (
+          {posts.map((post: Post) => (
             <PostCard key={post.id} post={post} />
           ))}
         </div>
