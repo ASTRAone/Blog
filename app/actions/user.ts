@@ -9,7 +9,7 @@ export const getAllSavedPostOnUser = async () => {
     const session = await authSession();
 
     if (!session) {
-      throw new Error("Unauthorized: User Id not found");
+      return;
     }
 
     const res = await prisma.user.findFirst({
@@ -22,7 +22,6 @@ export const getAllSavedPostOnUser = async () => {
     return res;
   } catch (error) {
     console.error({ error });
-    throw new Error("Something went wrong");
   }
 };
 

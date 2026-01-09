@@ -10,7 +10,7 @@ export const getUniquePost = async (id: string) => {
     const session = await authSession();
 
     if (!session) {
-      throw new Error("Unauthorized: User Id not found");
+      return {} as Post;
     }
 
     const res = (await prisma.post.findUnique({
@@ -29,7 +29,7 @@ export const createPost = async (params: PostFormValues) => {
     const session = await authSession();
 
     if (!session) {
-      throw new Error("Unauthorized: User Id not found");
+      return [];
     }
 
     const { categories, tags, id, ...rest } = params;
@@ -54,7 +54,7 @@ export const updatePost = async (params: PostFormValues) => {
     const session = await authSession();
 
     if (!session) {
-      throw new Error("Unauthorized: User Id not found");
+      return [];
     }
 
     const { categories, tags, id, ...rest } = params;
@@ -81,7 +81,7 @@ export const getAllPosts = async () => {
     const session = await authSession();
 
     if (!session) {
-      throw new Error("Unauthorized: User Id not found");
+      return [];
     }
 
     const res = await prisma.post.findMany({
@@ -104,7 +104,7 @@ export const getAllPostsOnIds = async (ids: string[]) => {
     const session = await authSession();
 
     if (!session) {
-      throw new Error("Unauthorized: User Id not found");
+      return [];
     }
 
     const res = await prisma.post.findMany({
@@ -130,7 +130,7 @@ export const deletePost = async (id: string) => {
     const session = await authSession();
 
     if (!session) {
-      throw new Error("Unauthorized: User Id not found");
+      return [];
     }
 
     const res = await prisma.post.delete({
@@ -149,7 +149,7 @@ export const getPostsByUser = async () => {
     const session = await authSession();
 
     if (!session) {
-      throw new Error("Unauthorized: User Id not found");
+      return [];
     }
 
     const res = await prisma.post.findMany({

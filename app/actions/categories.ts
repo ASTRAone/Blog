@@ -3,13 +3,14 @@
 import { CategoryProps } from "@/hooks/use-categories";
 import { authSession } from "@/lib/auth-utils";
 import prisma from "@/lib/db";
+import { Category } from "@/lib/generated/prisma/client";
 
 export const getCategories = async () => {
   try {
     const session = await authSession();
 
     if (!session) {
-      return [];
+      return [] as Category[];
     }
 
     const res = await prisma.category.findMany({
