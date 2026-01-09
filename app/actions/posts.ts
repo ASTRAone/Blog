@@ -5,6 +5,11 @@ import { authSession } from "@/lib/auth-utils";
 import prisma from "@/lib/db";
 import { Post, PostStatus } from "@prisma/client";
 
+type Tag = {
+  label: string;
+  value: string;
+};
+
 export const getUniquePost = async (id: string) => {
   try {
     const session = await authSession();
@@ -33,7 +38,7 @@ export const createPost = async (params: PostFormValues) => {
     }
 
     const { categories, tags, id, ...rest } = params;
-    const data = { ...rest, tags: tags.map((tag) => tag.value) };
+    const data = { ...rest, tags: tags.map((tag: Tag) => tag.value) };
     const res = await prisma.post.create({
       data: {
         ...data,
@@ -58,7 +63,7 @@ export const updatePost = async (params: PostFormValues) => {
     }
 
     const { categories, tags, id, ...rest } = params;
-    const data = { ...rest, tags: tags.map((tag) => tag.value) };
+    const data = { ...rest, tags: tags.map((tag: Tag) => tag.value) };
 
     const res = await prisma.post.update({
       where: { id: params.id },

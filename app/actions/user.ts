@@ -65,7 +65,7 @@ export const unSavePostOnUser = async (id: string) => {
     });
 
     const updateSavedPosts = user?.savedPosts.filter(
-      (postsIds) => postsIds !== id
+      (postsIds: string) => postsIds !== id
     );
 
     const res = await prisma.user.update({
