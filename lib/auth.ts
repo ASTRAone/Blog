@@ -22,5 +22,12 @@ export const auth = betterAuth({
       prompt: "select_account",
     },
   },
+  session: {
+    expiresIn: 60 * 60 * 24 * 7, // 7 дней
+    updateAge: 60 * 60 * 24, // обновлять каждый день
+  },
+  baseURL: process.env.BETTER_AUTH_URL!,
+  secret: process.env.BETTER_AUTH_SECRET!,
+  trustedOrigins: [process.env.BETTER_AUTH_URL!, "http://localhost:3000"],
   plugins: [nextCookies()],
 });
