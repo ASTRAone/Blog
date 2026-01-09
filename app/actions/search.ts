@@ -68,21 +68,28 @@ export const searchContent = async (query: string) => {
       }),
     ]);
 
-    const results: SearchResult[] = [
-      ...posts.map((post) => ({
-        type: "post" as const,
-        title: post.title,
-        url: `/blog/posts/${post.slug}`,
-        imageUrl: post.imageUrl,
-        id: post.id,
-      })),
+    type PostFromDB = (typeof posts)[0];
+    type CategoryFromDB = (typeof categories)[0];
 
-      ...categories.map((category) => ({
-        type: "category" as const,
-        name: category.name,
-        url: `/blog/category/${category.id}`,
-        id: category.id,
-      })),
+    const results: SearchResult[] = [
+      ...posts.map(
+        (post: PostFromDB): SearchResult => ({
+          type: "post" as const,
+          title: post.title,
+          url: `/blog/posts/${post.slug}`,
+          imageUrl: post.imageUrl,
+          id: post.id,
+        })
+      ),
+
+      ...categories.map(
+        (category: CategoryFromDB): SearchResult => ({
+          type: "category" as const,
+          name: category.name,
+          url: `/blog/category/${category.id}`,
+          id: category.id,
+        })
+      ),
     ];
 
     return { results };
