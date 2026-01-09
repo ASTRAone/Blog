@@ -2,6 +2,7 @@
 
 import { authSession } from "@/lib/auth-utils";
 import prisma from "@/lib/db";
+import { Post } from "@prisma/client";
 
 const PAGE_SIZE = 10;
 
@@ -37,7 +38,7 @@ export const getPosts = async (page: number) => {
     ]);
 
     return {
-      posts: posts.map((post) => ({
+      posts: posts.map((post: Post) => ({
         ...post,
         savedPosts: currentUser?.savedPosts ?? [],
       })),
