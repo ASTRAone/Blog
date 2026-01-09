@@ -1,6 +1,6 @@
 "use client";
 
-import { Post } from "@prisma/client";
+import { Post } from "@/lib/generated/prisma/client";
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
 import {
   Card,
