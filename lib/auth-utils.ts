@@ -1,19 +1,25 @@
-import { headers } from "next/headers";
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { auth } from "./auth";
 
 export const authSession = async () => {
   try {
-    const session = auth.api.getSession({ headers: await headers() });
+    const cookieStore = await cookies();
+    const cookieHeader = cookieStore
+      .getAll()
+      .map((cookie) => `${cookie.name}=${cookie.value}`)
+      .join("; ");
 
-    if (!session) {
-      throw new Error("Unauthorized: No valid session found");
-    }
+    const session = await auth.api.getSession({
+      headers: {
+        cookie: cookieHeader,
+      },
+    });
 
     return session;
   } catch (error) {
-    console.error({ error });
-    throw new Error("Authentication failed");
+    console.error("Auth error:", error);
+    return null;
   }
 };
 

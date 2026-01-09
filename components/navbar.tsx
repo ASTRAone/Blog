@@ -14,6 +14,7 @@ import {
 import { useIsMobile } from "@/hooks/use-mobile";
 import { authClient } from "@/lib/auth-client";
 import { getNameInitials } from "@/lib/utils";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { GlobalSearchModal } from "./global-search-modal";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
@@ -27,6 +28,12 @@ export function NavMenu({
 }) {
   const isMobile = useIsMobile();
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
+
+  const signOut = () => {
+    router.push("/sign-in");
+    authClient.signOut();
+  };
 
   return (
     <NavigationMenu
@@ -72,7 +79,7 @@ export function NavMenu({
                   <NavigationMenuLink asChild>
                     <div
                       className="flex-row items-center gap-2 cursor-pointer"
-                      onClick={() => authClient.signOut()}
+                      onClick={signOut}
                     >
                       <LogOutIcon />
                       Signout
