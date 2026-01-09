@@ -130,7 +130,7 @@ export const getPostsByCategory = async (categoryId: string, page: number) => {
     ]);
 
     return {
-      posts: posts.map((post) => ({
+      posts: posts.map((post: Post) => ({
         ...post,
         savedPosts: currentUser?.savedPosts ?? [],
       })),
@@ -187,7 +187,7 @@ export const getPostsByTag = async (tag: string, page: number) => {
     ]);
 
     return {
-      posts: posts.map((post) => ({
+      posts: posts.map((post: Post) => ({
         ...post,
         savedPosts: currentUser?.savedPosts ?? [],
       })),
