@@ -11,14 +11,11 @@ export const authSession = async () => {
       .join("; ");
 
     const session = await auth.api.getSession({
-      headers: {
-        cookie: cookieHeader,
-      },
+      headers: { cookie: cookieHeader },
     });
 
     return session;
   } catch (error) {
-    console.error("Auth error:", error);
     return null;
   }
 };

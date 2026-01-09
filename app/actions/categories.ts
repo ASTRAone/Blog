@@ -9,7 +9,7 @@ export const getCategories = async () => {
     const session = await authSession();
 
     if (!session) {
-      throw new Error("Unauthorized: User Id not found");
+      return [];
     }
 
     const res = await prisma.category.findMany({
@@ -19,7 +19,7 @@ export const getCategories = async () => {
     return res;
   } catch (error) {
     console.error({ error });
-    throw new Error("Something went wrong");
+    return [];
   }
 };
 
