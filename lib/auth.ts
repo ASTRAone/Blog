@@ -34,7 +34,6 @@ export const auth = betterAuth({
     baseURL,
     "http://localhost:3000",
     "https://localhost:3000",
-    "https://blog-m5sj57y77-vladislavs-projects-ac85ce1e.vercel.app",
     "https://*.vercel.app",
   ],
   plugins: [nextCookies()],
