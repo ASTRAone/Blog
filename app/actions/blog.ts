@@ -3,22 +3,18 @@
 import { authSession } from "@/lib/auth-utils";
 import prisma from "@/lib/db";
 
-import { Post, Prisma } from "@/lib/generated/prisma/client";
+import { Category, Post } from "@/lib/generated/prisma/client";
 
-// 1. Создайте тип который включает отношения
-type PostWithRelations = Prisma.PostGetPayload<{
-  include: {
-    user: {
-      select: {
-        image: true;
-        name: true;
-        id: true;
-        savedPosts: true;
-      };
-    };
-    category: true;
+export type PostWithRelations = Post & {
+  user: {
+    id: string;
+    name: string;
+    image: string | null;
+    savedPosts: string[];
   };
-}>;
+  category: Category | null;
+  savedPosts?: string[];
+};
 
 const PAGE_SIZE = 10;
 

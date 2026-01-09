@@ -1,4 +1,4 @@
-import { getPostsByCategory } from "@/app/actions/blog";
+import { PostWithRelations, getPostsByCategory } from "@/app/actions/blog";
 import { Header } from "@/components/header";
 import { Pagination } from "@/components/pagination";
 import { PostCard } from "@/components/post-card";
@@ -18,14 +18,12 @@ const CategoryPage = async ({
 
   const foundPost = posts.find((post: Post) => post.categoryId === id);
 
-  console.log("foundPost", foundPost);
-
   return (
     <>
       <Header about={foundPost?.category?.name} />
       <div className="flex flex-col gap-6 justify-between h-full min-h-dvh">
         <div className="container mx-auto p-4 grid grid-cols-1 md:grid-cols-4 gap-6 my-8">
-          {posts.map((post) => (
+          {posts.map((post: PostWithRelations) => (
             <PostCard post={post} key={post.id} />
           ))}
         </div>

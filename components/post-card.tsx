@@ -16,7 +16,9 @@ import { HoverCard, HoverCardContent, HoverCardTrigger } from "./ui/hover-card";
 import { Spinner } from "./ui/spinner";
 
 interface PostProps {
-  post: Post & { category: Category | null } & {
+  post: Post & {
+    category?: Category | null;
+  } & {
     user: {
       name: string;
       id: string;
@@ -93,7 +95,7 @@ export const PostCard = ({ post }: PostProps) => {
         <p className="text-sm line-clamp-3">{excertp} </p>
 
         <div className="flex gap-2 py-6 flex-wrap">
-          {post.tags.slice(0, 5).map((tag) => (
+          {post.tags.slice(0, 5).map((tag: string) => (
             <Link href={`/blog/tag/${tag}`} key={tag} className="truncate">
               <Badge variant="secondary" title={tag}>
                 #{tag}
@@ -110,7 +112,7 @@ export const PostCard = ({ post }: PostProps) => {
               </HoverCardTrigger>
               <HoverCardContent className="w-80">
                 <div className="flex flex-wrap gap-2">
-                  {post.tags.slice(5).map((tag) => (
+                  {post.tags.slice(5).map((tag: string) => (
                     <Link
                       href={`/blog/tag/${tag}`}
                       key={tag}
