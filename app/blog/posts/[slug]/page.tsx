@@ -60,7 +60,7 @@ const BlogPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
         <RichTextViewer content={post.content} />
 
         <div className="flex gap-2 py-6 flex-wrap">
-          {post.tags.map((tag) => (
+          {post.tags.map((tag: string) => (
             <Link key={tag} href={`/blog/tag/${tag}`}>
               <Badge variant="secondary">#{tag}</Badge>
             </Link>
