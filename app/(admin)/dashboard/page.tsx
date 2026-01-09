@@ -4,6 +4,7 @@ import { DashboardCard } from "@/components/dashboard-card";
 import { DashboardCategories } from "@/components/dashboard-categories";
 import { DashboardChart } from "@/components/dashboard-chart";
 import { authSession, requireAuth } from "@/lib/auth-utils";
+import { Post } from "@/lib/generated/prisma/client";
 import { Rocket } from "lucide-react";
 import Link from "next/link";
 
@@ -13,7 +14,10 @@ export default async function DashboardPage() {
   const posts = await getPostsByUser();
   const categories = await getCategoriesWithUser();
 
-  const totalViews = posts.reduce((acc: number, item) => acc + item.views!, 0);
+  const totalViews = posts.reduce(
+    (acc: number, item: Post) => acc + item.views!,
+    0
+  );
 
   return (
     <div className="flex flex-1 flex-col">
