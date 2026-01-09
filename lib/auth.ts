@@ -3,6 +3,8 @@ import { prismaAdapter } from "better-auth/adapters/prisma";
 import { nextCookies } from "better-auth/next-js";
 import prisma from "./db";
 
+const baseURL = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+
 export const auth = betterAuth({
   database: prismaAdapter(prisma, {
     provider: "postgresql",
@@ -28,6 +30,12 @@ export const auth = betterAuth({
   },
   baseURL: process.env.BETTER_AUTH_URL!,
   secret: process.env.BETTER_AUTH_SECRET!,
-  trustedOrigins: [process.env.BETTER_AUTH_URL!, "http://localhost:3000"],
+  trustedOrigins: [
+    baseURL,
+    "http://localhost:3000",
+    "https://localhost:3000",
+    "https://blog-m5sj57y77-vladislavs-projects-ac85ce1e.vercel.app",
+    "https://*.vercel.app",
+  ],
   plugins: [nextCookies()],
 });
