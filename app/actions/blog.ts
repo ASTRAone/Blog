@@ -2,7 +2,7 @@
 
 import { authSession } from "@/lib/auth-utils";
 import prisma from "@/lib/db";
-import { Post } from "@prisma/client";
+import { Post } from "@/lib/generated/prisma/client";
 
 const PAGE_SIZE = 10;
 
