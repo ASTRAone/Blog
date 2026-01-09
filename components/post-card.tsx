@@ -1,8 +1,8 @@
 "use client";
 
 import { savePostOnUser, unSavePostOnUser } from "@/app/actions/user";
-import { Category, Post } from "@/lib/generated/prisma/client";
 import { stripHtml } from "@/lib/utils";
+import { Category, Post } from "@prisma/client";
 import { format } from "date-fns";
 import { MoveRight, Save, SaveOff } from "lucide-react";
 import Image from "next/image";

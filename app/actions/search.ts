@@ -1,7 +1,7 @@
 "use server";
 
 import prisma from "@/lib/db";
-import { PostStatus } from "@/lib/generated/prisma/enums";
+import { PostStatus } from "@prisma/client";
 
 type SearchResult =
   | {

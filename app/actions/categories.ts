@@ -3,7 +3,7 @@
 import { CategoryProps } from "@/hooks/use-categories";
 import { authSession } from "@/lib/auth-utils";
 import prisma from "@/lib/db";
-import { Category } from "@/lib/generated/prisma/client";
+import { Category } from "@prisma/client";
 
 export const getCategories = async () => {
   try {
