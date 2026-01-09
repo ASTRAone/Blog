@@ -2,7 +2,23 @@
 
 import { authSession } from "@/lib/auth-utils";
 import prisma from "@/lib/db";
-import { Post } from "@/lib/generated/prisma/client";
+
+import { Post, Prisma } from "@/lib/generated/prisma/client";
+
+// 1. Создайте тип который включает отношения
+type PostWithRelations = Prisma.PostGetPayload<{
+  include: {
+    user: {
+      select: {
+        image: true;
+        name: true;
+        id: true;
+        savedPosts: true;
+      };
+    };
+    category: true;
+  };
+}>;
 
 const PAGE_SIZE = 10;
 
@@ -130,7 +146,7 @@ export const getPostsByCategory = async (categoryId: string, page: number) => {
     ]);
 
     return {
-      posts: posts.map((post: Post) => ({
+      posts: posts.map((post: PostWithRelations) => ({
         ...post,
         savedPosts: currentUser?.savedPosts ?? [],
       })),

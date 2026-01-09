@@ -2,6 +2,7 @@ import { getPostsByCategory } from "@/app/actions/blog";
 import { Header } from "@/components/header";
 import { Pagination } from "@/components/pagination";
 import { PostCard } from "@/components/post-card";
+import { Post } from "@/lib/generated/prisma/client";
 
 const CategoryPage = async ({
   params,
@@ -15,7 +16,9 @@ const CategoryPage = async ({
   const page = Number(searchArgs.page) || 1;
   const { posts, totalPages, currentPage } = await getPostsByCategory(id, page);
 
-  const foundPost = posts.find((post) => post.categoryId === id);
+  const foundPost = posts.find((post: Post) => post.categoryId === id);
+
+  console.log("foundPost", foundPost);
 
   return (
     <>
