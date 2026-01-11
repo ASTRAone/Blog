@@ -35,6 +35,7 @@ export const auth = betterAuth({
     "http://localhost:3000",
     "https://localhost:3000",
     "https://*.vercel.app",
+    "https://blog-phi-weld-32.vercel.app",
   ],
   plugins: [nextCookies()],
 });
