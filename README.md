@@ -1,36 +1,198 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NextBlog
 
-## Getting Started
+Современное приложение для ведения блога, построенное на Next.js с использованием TypeScript и современных инструментов разработки.
 
-First, run the development server:
+## Проект доступен по ссылке blog-phi-weld-32.vercel.app
+
+## 🚀 Технологии
+
+- **Next.js 16.1.1** - React-фреймворк
+- **TypeScript** - Статическая типизация
+- **Tailwind CSS 4** - Утилитарный CSS-фреймворк
+- **Prisma 6.18.0** - ORM для работы с базой данных
+- **Better Auth 1.3.29** - Аутентификация
+- **React Hook Form + Zod** - Валидация форм
+- **Radix UI** - Компоненты с доступностью
+- **UploadThing** - Загрузка файлов
+
+## 📦 Установка и запуск
+
+### Предварительные требования
+
+- Node.js 18+
+- pnpm (менеджер пакетов)
+- База данных (настройка через Prisma)
+
+### Установка pnpm
+
+Если у вас не установлен pnpm:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Используя npm
+npm install -g pnpm
+
+# Или используя Homebrew (macOS)
+brew install pnpm
+
+# Проверьте установку
+pnpm --version
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Установка проекта
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Клонируйте репозиторий:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+git clone <repository-url>
+cd nextblog
+```
 
-## Learn More
+2. Установите зависимости:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+pnpm install
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. Настройте переменные окружения:
+   Создайте файл `.env` на основе `.env.example` и укажите необходимые параметры (база данных, ключи API и т.д.)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+4. Настройте Prisma:
 
-## Deploy on Vercel
+```bash
+pnpx prisma generate
+pnpx prisma db push
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Запуск в разработке
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+pnpm dev
+```
+
+Приложение будет доступно по адресу: `http://localhost:3000`
+
+### Сборка для production
+
+```bash
+pnpm build
+pnpm start
+```
+
+### Деплой на Vercel
+
+Проект включает специальный скрипт для Vercel:
+
+```bash
+pnpm vercel-build
+```
+
+## 📁 Структура проекта
+
+```
+nextblog/
+├── app/                    # Next.js App Router
+├── components/            # React компоненты
+├── lib/                  # Утилиты и конфигурации
+├── prisma/               # Схема базы данных
+├── public/               # Статические файлы
+└── styles/               # Глобальные стили
+```
+
+## 🛠 Команды pnpm
+
+| Команда             | Описание                                               |
+| ------------------- | ------------------------------------------------------ |
+| `pnpm dev`          | Запуск в режиме разработки                             |
+| `pnpm build`        | Сборка проекта (включает генерацию Prisma клиента)     |
+| `pnpm start`        | Запуск собранного приложения                           |
+| `pnpm lint`         | Проверка кода с ESLint                                 |
+| `pnpm lint:fix`     | Автоисправление проблем с ESLint                       |
+| `pnpm vercel-build` | Сборка для Vercel                                      |
+| `pnpm postinstall`  | Автоматически выполняется после установки зависимостей |
+| `pnpm prepare`      | Установка Husky hooks                                  |
+
+## 🔧 Конфигурация
+
+### База данных
+
+Проект использует Prisma ORM с адаптером для Neon (PostgreSQL). Настройка подключения в файле `.env`.
+
+### Линтинг
+
+Настроены:
+
+- ESLint с конфигурацией Next.js и TypeScript
+- Prettier для форматирования
+- Husky + lint-staged для pre-commit хуков
+
+### Компоненты
+
+Используются Radix UI компоненты для построения доступного интерфейса:
+
+- Диалоги, модальные окна
+- Навигационные элементы
+- Формы и контролы
+- Всплывающие подсказки и тултипы
+
+## 🎨 Особенности
+
+- **Темная/светлая тема** (через next-themes)
+- **Rich-text редактор** (Tiptap)
+- **Drag-and-drop загрузка файлов** (react-dropzone + UploadThing)
+- **Валидация форм** (React Hook Form + Zod)
+- **Таблицы с сортировкой** (TanStack Table)
+- **Графики и диаграммы** (Recharts)
+- **Уведомления** (Sonner)
+- **Карусели** (Embla Carousel)
+- **Анимации** (Tailwind CSS анимации)
+
+## ⚡ Особенности использования pnpm
+
+### Преимущества pnpm в этом проекте:
+
+- **Эффективное использование дискового пространства** - пакеты хранятся в общем хранилище
+- **Быстрая установка** - зависимостей через жесткие ссылки
+- **Строгие зависимости** - предотвращение призрачных зависимостей
+- **Автоматический postinstall** - генерация Prisma клиента после установки
+
+### Работа с Prisma:
+
+```bash
+# Используйте pnpx для запуска Prisma CLI
+pnpx prisma generate
+pnpx prisma studio
+pnpx prisma migrate dev
+```
+
+### Husky с pnpm:
+
+Husky уже настроен для работы с pnpm. При первом клоне выполните:
+
+```bash
+pnpm prepare
+```
+
+## 🧪 Тестирование и качество кода
+
+- Автоматический линтинг при коммите (husky + lint-staged)
+- Проверка TypeScript типов
+- Форматирование кода с Prettier
+
+### Pre-commit хуки
+
+При коммите автоматически запускаются:
+
+- ESLint для TypeScript файлов
+- Prettier для всех файлов
+
+## 📄 Лицензия
+
+MIT
+
+## 🔗 Полезные ссылки
+
+- [Next.js документация](https://nextjs.org/docs)
+- [Prisma документация](https://www.prisma.io/docs)
+- [Tailwind CSS документация](https://tailwindcss.com/docs)
+- [Radix UI документация](https://www.radix-ui.com/docs)
+- [pnpm документация](https://pnpm.io/ru/)
