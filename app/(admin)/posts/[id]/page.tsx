@@ -9,6 +9,11 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Post",
+};
 
 const PostPage = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
@@ -33,9 +38,7 @@ const PostPage = async ({ params }: { params: Promise<{ id: string }> }) => {
               <BreadcrumbSeparator />
 
               <BreadcrumbItem>
-                <BreadcrumbPage>
-                  {id === "new" ? "New" : post.title}
-                </BreadcrumbPage>
+                <BreadcrumbPage>{id === "new" ? "New" : post.title}</BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>

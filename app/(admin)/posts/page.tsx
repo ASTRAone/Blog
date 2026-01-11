@@ -9,8 +9,13 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
+import { Metadata } from "next";
 import Link from "next/link";
 import { columns } from "./clients/columns";
+
+export const metadata: Metadata = {
+  title: "Posts",
+};
 
 const PostsPage = async () => {
   const data = await getAllPosts();

@@ -9,7 +9,12 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { Metadata } from "next";
 import { columns } from "./client/columns";
+
+export const metadata: Metadata = {
+  title: "Saved Posts",
+};
 
 const SavedPostPage = async () => {
   const data = await getAllSavedPostOnUser();
