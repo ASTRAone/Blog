@@ -15,6 +15,10 @@ const nextConfig: NextConfig = {
         hostname: "mockmind-api.uifaces.co",
         protocol: "https",
       },
+      {
+        hostname: 'avatars.githubusercontent.com',
+        protocol: 'https'
+      }
     ],
   },
 };

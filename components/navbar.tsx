@@ -19,27 +19,18 @@ import { useState } from "react";
 import { GlobalSearchModal } from "./global-search-modal";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
-export function NavMenu({
-  userName,
-  userImage,
-}: {
-  userName?: string;
-  userImage?: string;
-}) {
+export function NavMenu({ userName, userImage }: { userName?: string; userImage?: string }) {
   const isMobile = useIsMobile();
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
 
-  const signOut = () => {
+  const signOut = async () => {
+    await authClient.signOut();
     router.push("/sign-in");
-    authClient.signOut();
   };
 
   return (
-    <NavigationMenu
-      viewport={isMobile}
-      className="mx-auto max-w-full my-5 container"
-    >
+    <NavigationMenu viewport={isMobile} className="mx-auto max-w-full my-5 container">
       <div className="flex justify-between w-full container">
         <NavigationMenuList className="flex-wrap">
           <NavigationMenuItem>
@@ -49,10 +40,7 @@ export function NavMenu({
 
         <NavigationMenuList className="flex-wrap">
           <NavigationMenuItem className="hidden md:block">
-            <div
-              className="mr-6 cursor-pointer"
-              onClick={() => setIsOpen(true)}
-            >
+            <div className="mr-6 cursor-pointer" onClick={() => setIsOpen(true)}>
               <Search />
             </div>
             <GlobalSearchModal isOpen={isOpen} setIsOpen={setIsOpen} />
@@ -68,19 +56,13 @@ export function NavMenu({
               <ul className="grid w-[200px] gap-4">
                 <li>
                   <NavigationMenuLink asChild>
-                    <Link
-                      href="/dashboard"
-                      className="flex-row items-center gap-2"
-                    >
+                    <Link href="/dashboard" className="flex-row items-center gap-2">
                       <LayoutDashboard />
                       Dashboard
                     </Link>
                   </NavigationMenuLink>
                   <NavigationMenuLink asChild>
-                    <div
-                      className="flex-row items-center gap-2 cursor-pointer"
-                      onClick={signOut}
-                    >
+                    <div className="flex-row items-center gap-2 cursor-pointer" onClick={signOut}>
                       <LogOutIcon />
                       Signout
                     </div>

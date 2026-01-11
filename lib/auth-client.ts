@@ -1,5 +1,6 @@
 import { createAuthClient } from "better-auth/react";
+import { config } from "./config";
 
 export const authClient = createAuthClient({
-  baseURL: "https://blog-phi-weld-32.vercel.app",
+  baseURL: config.API_URL,
 });

@@ -3,7 +3,7 @@ import { prismaAdapter } from "better-auth/adapters/prisma";
 import { nextCookies } from "better-auth/next-js";
 import prisma from "./db";
 
-const baseURL = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+const baseURL = process.env.NEXT_PUBLIC_APP_URL!;
 
 export const auth = betterAuth({
   database: prismaAdapter(prisma, {

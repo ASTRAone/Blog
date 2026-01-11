@@ -1,18 +1,10 @@
-import { cookies } from "next/headers";
+import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { auth } from "./auth";
 
 export const authSession = async () => {
   try {
-    const cookieStore = await cookies();
-    const cookieHeader = cookieStore
-      .getAll()
-      .map((cookie) => `${cookie.name}=${cookie.value}`)
-      .join("; ");
-
-    const session = await auth.api.getSession({
-      headers: { cookie: cookieHeader },
-    });
+    const session = await auth.api.getSession({ headers: await headers() });
 
     return session;
   } catch (error) {
