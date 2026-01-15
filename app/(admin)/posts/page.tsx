@@ -3,7 +3,6 @@ import { DataTable } from "@/components/data-table";
 import {
   Breadcrumb,
   BreadcrumbItem,
-  BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
@@ -28,7 +27,7 @@ const PostsPage = async () => {
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem>
-                <BreadcrumbLink href="/dashboard">Dashboard</BreadcrumbLink>
+                <Link href="/dashboard">Dashboard</Link>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
 

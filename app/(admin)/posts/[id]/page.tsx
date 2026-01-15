@@ -4,12 +4,12 @@ import PostForm from "@/components/post-form";
 import {
   Breadcrumb,
   BreadcrumbItem,
-  BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Post",
@@ -27,12 +27,12 @@ const PostPage = async ({ params }: { params: Promise<{ id: string }> }) => {
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem>
-                <BreadcrumbLink href="/dashboard">Dashboard</BreadcrumbLink>
+                <Link href="/dashboard">Dashboard</Link>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
 
               <BreadcrumbItem>
-                <BreadcrumbLink href="/posts">posts</BreadcrumbLink>
+                <Link href="/posts">posts</Link>
               </BreadcrumbItem>
 
               <BreadcrumbSeparator />

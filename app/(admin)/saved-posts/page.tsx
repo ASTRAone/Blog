@@ -4,12 +4,12 @@ import { DataTable } from "@/components/data-table";
 import {
   Breadcrumb,
   BreadcrumbItem,
-  BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { Metadata } from "next";
+import Link from "next/link";
 import { columns } from "./client/columns";
 
 export const metadata: Metadata = {
@@ -27,7 +27,7 @@ const SavedPostPage = async () => {
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem>
-                <BreadcrumbLink href="/dashboard">Dashboard</BreadcrumbLink>
+                <Link href="/dashboard">Dashboard</Link>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
 

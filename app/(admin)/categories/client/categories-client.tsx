@@ -5,7 +5,6 @@ import { DataTable } from "@/components/data-table";
 import {
   Breadcrumb,
   BreadcrumbItem,
-  BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
@@ -18,6 +17,7 @@ import { Spinner } from "@/components/ui/spinner";
 import { useCategories } from "@/hooks/use-categories";
 import { Category } from "@/lib/generated/prisma/client";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
@@ -121,7 +121,7 @@ const CategoriesClient = ({ categories }: { categories: Category[] }) => {
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem>
-                <BreadcrumbLink href="/dashboard">Dashboard</BreadcrumbLink>
+                <Link href="/dashboard">Dashboard</Link>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
 
